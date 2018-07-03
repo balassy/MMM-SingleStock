@@ -1,7 +1,7 @@
 /* global Module, Log */
 
-/* Magic Mirror Module: MMM-SingleStock
- * By György Balássy
+/* Magic Mirror Module: MMM-SingleStock (https://github.com/balassy/MMM-SingleStock)
+ * By György Balássy (https://www.linkedin.com/in/balassy)
  * MIT Licensed.
  */
 
@@ -14,16 +14,6 @@ Module.register('MMM-SingleStock', {
   },
 
   requiresVersion: '2.1.0',
-
-  getScripts() {
-    return [];
-  },
-
-  getStyles() {
-    return [
-      'MMM-SingleStock.css'
-    ];
-  },
 
   getTranslations() {
     return {
