@@ -4,7 +4,7 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 
 ## Using the module
 
-To use this module, follow these steps:
+To use this module follow these steps:
 
 1. Clone this repository to the `modules` folder of your MagicMirror:
 
@@ -21,9 +21,9 @@ var config = {
       module: 'MMM-SingleStock',
       config: {
         stockSymbol: 'GOOG',
-        updateInterval: 3600000, // 1 hour in millisenconds
+        updateInterval: 3600000, // 1 hour in milliseconds
         showChange: true,        // false | true
-        label: 'symbol'          // 'symbol' | 'companyName' | 'none'
+        label: 'symbol'          // 'symbol' | 'companyName' | 'none' | any string
       }
     }
   ]
