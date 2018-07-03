@@ -1,6 +1,28 @@
 # MMM-SingleStock
 
-This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/) to display a single stock price.
+This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/) to display a single stock price without any fancy animation.
+
+## Features
+
+By default this module displays the symbol and the current price of the configured symbol:
+
+![](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-default.png)
+
+You can configure the module to display the full name of the company instead of the stock symbol:
+
+![](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-companyname.png)
+
+If you wish, you can completely remove the prefix, and display only the price value:
+
+![](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-none.png)
+
+You can even configure any custom prefix, for example a dollar sign:
+
+![](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-customprefix.png)
+
+The second line of the module displays the change of the price which can be hidden if you prefer:
+
+![](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-nochange.png)
 
 ## Using the module
 
