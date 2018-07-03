@@ -4,7 +4,7 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 
 ## Features
 
-By default this module displays the symbol and the current price of the configured symbol:
+By default this module displays the symbol and the current price of the configured stock:
 
 ![](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-default.png)
 
@@ -23,6 +23,8 @@ You can even configure any custom prefix, for example a dollar sign:
 The second line of the module displays the change of the price which can be hidden if you prefer:
 
 ![](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-nochange.png)
+
+This module is capable to display only a single stock price. If you would like to see the price of more stocks on your mirror, add this module multiple times.
 
 ## Using the module
 
@@ -71,9 +73,9 @@ You can see an example by visiting this URL: https://api.iextrading.com/1.0/stoc
 
 Currently this module supports English (`en`) and Hungarian (`hu`) languages. The language can be specified in the global `language` setting in the `config.js` file.
 
-## Contribution
+Want to see more languages? Please contribute!
 
-Your feedback is more than welcome, please send your suggestions or bug reports as [Github issues](https://github.com/balassy/MMM-SingleStock/issues).
+## Contribution
 
 Although for operation this module does not depend on any other module, if you would like to contribute to the codebase, please use the preconfigured linters to analyze the source code before sending a pull request. To run the linters follow these steps:
 
@@ -95,6 +97,9 @@ npm install -g grunt
 grunt
 ```
 
+## Got feedback?
+
+Your feedback is more than welcome, please send your suggestions, feature requests or bug reports as [Github issues](https://github.com/balassy/MMM-SingleStock/issues).
 
 ## Acknowledments
 
