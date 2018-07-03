@@ -43,6 +43,7 @@ var config = {
   modules: [
     {
       module: 'MMM-SingleStock',
+      position: 'top_right',
       config: {
         stockSymbol: 'GOOG',
         updateInterval: 3600000, // 1 hour in milliseconds
