@@ -45,6 +45,35 @@ This module periodically sends requests from the browser window of the MagicMirr
 
 You can see an example by visiting this URL: https://api.iextrading.com/1.0/stock/GOOG/quote
 
+## Localization
+
+Currently this module supports English (`en`) and Hungarian (`hu`) languages. The language can be specified in the global `language` setting in the `config.js` file.
+
+## Contribution
+
+Your feedback is more than welcome, please send your suggestions or bug reports as [Github issues](https://github.com/balassy/MMM-SingleStock/issues).
+
+Although for operation this module does not depend on any other module, if you would like to contribute to the codebase, please use the preconfigured linters to analyze the source code before sending a pull request. To run the linters follow these steps:
+
+1. Install developer dependencies:
+
+```bash
+npm install
+```
+
+2. Install Grunt:
+
+```bash
+npm install -g grunt
+```
+
+3. Use Grunt to run all linters:
+
+```bash
+grunt
+```
+
+
 ## Acknowledments
 
 Many thanks to [Michael Teeuw](https://github.com/MichMich) for creating and maintaining the [MagicMirror²](https://github.com/MichMich/MagicMirror/) project fully open source.
