@@ -26,6 +26,8 @@ The second line of the module displays the change of the price which can be hidd
 
 This module is capable to display only a single stock price. If you would like to see the price of more stocks on your mirror, add this module multiple times.
 
+For updates, please check the [CHANGELOG](https://github.com/balassy/MMM-SingleStock/blob/master/CHANGELOG.md).
+
 ## Using the module
 
 To use this module follow these steps:

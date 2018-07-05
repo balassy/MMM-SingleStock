@@ -30,7 +30,7 @@ Module.register('MMM-SingleStock', {
     this._getData();
 
     setInterval(() => {
-      self.updateDom();
+      self._getData(() => self.updateDom());
     }, this.config.updateInterval);
   },
 
@@ -58,7 +58,7 @@ Module.register('MMM-SingleStock', {
     return wrapper;
   },
 
-  _getData() {
+  _getData(onCompleteCallback) {
     const self = this;
 
     const url = `https://api.iextrading.com/1.0/stock/${this.config.stockSymbol}/quote`;
@@ -69,6 +69,7 @@ Module.register('MMM-SingleStock', {
       if (this.readyState === 4) {
         if (this.status === 200) {
           self._processResponse(this.response);
+          onCompleteCallback();
         } else {
           Log.error(self.name, `MMM-SingleStock: Failed to load data. XHR status: ${this.status}`);
         }
