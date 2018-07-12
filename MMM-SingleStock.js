@@ -27,7 +27,7 @@ Module.register('MMM-SingleStock', {
     this.viewModel = null;
     this.hasData = false;
 
-    this._getData();
+    this._getData(() => self.updateDom());
 
     setInterval(() => {
       self._getData(() => self.updateDom());
