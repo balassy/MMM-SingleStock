@@ -39,7 +39,7 @@ Module.register('MMM-SingleStock', {
 
     if (this.viewModel) {
       const priceEl = document.createElement('div');
-      priceEl.innerHTML = `${this.viewModel.label} ${this.viewModel.price}`;
+      priceEl.innerHTML = `${this.viewModel.label} ${this.viewModel.price}&#36;`;
       wrapper.appendChild(priceEl);
 
       if (this.config.showChange) {
