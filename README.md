@@ -48,6 +48,7 @@ var config = {
       position: 'top_right',
       config: {
         stockSymbol: 'GOOG',
+        apiToken: 'YOUR_TOKEN',  // Unique, private API key obtained from https://iexcloud.io/console/tokens
         updateInterval: 3600000, // 1 hour in milliseconds
         showChange: true,        // false | true
         label: 'symbol'          // 'symbol' | 'companyName' | 'none' | any string
@@ -62,15 +63,16 @@ var config = {
 | Option           | Description
 |----------------- |-----------
 | `stockSymbol`    | **REQUIRED** The symbol of the stock of what the value should be displayed in this module. <br><br> **Type:** `string` <br>**Default value:** `GOOG`
+| `apiToken`       | **REQUIRED** Your unique, private API key for the IEX Cloud you can obtain from https://iexcloud.io/console/tokens. <br><br> **Type:** `string` <br>**Default value:** `""` (empty string)
 | `updateInterval` | *Optional* The frequency of when the module should query the current price of the stock. <br><br>**Type:** `int` (milliseconds) <br>**Default value:** `3600000` milliseconds (1 hour)
 | `showChange`     | *Optional* Determines whether the price difference should be also displayed. <br><br>**Type:** `boolean` <br>**Default value:** `true` (yes, the price difference is displayed)
 | `label`          | *Optional* Determines what prefix should be prepended to the price. <br><br>**Type:** `string` <br>**Possible values:** <br>`symbol`: The acronym of the stock (e.g. `GOOG`) is displayed before the price.<br>`companyName`: The full name of the company (e.g. `Alphabet Inc.`) is displayed before the price.<br>`none`: Nothing is displayed before the price, only the price is shown.<br>Any other string is displayed as is, e.g. set `$` to display a dollar sign before the price number.<br>**Default value:** `symbol` (the acronym of the stock is displayed before the price)
 
 ## How it works
 
-This module periodically sends requests from the browser window of the MagicMirror Electron application to the [IEXtrading Service](https://iextrading.com/developer/). The IEX API is free, and it does NOT require any login or API key.
+This module periodically sends requests from the browser window of the MagicMirror Electron application to the [IEX Cloud Service](https://iextrading.com/developer/). The IEX Cloud API has [multiple tiers](https://iexcloud.io/pricing/) including a free tier which is suitable for this module. However to access the API you need a unique, private API Token.
 
-You can see an example by visiting this URL: https://api.iextrading.com/1.0/stock/GOOG/quote
+You can sign up to IEX Cloud by visiting this URL: https://iexcloud.io/cloud-login#/register/
 
 ## Localization
 
