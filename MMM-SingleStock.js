@@ -8,6 +8,7 @@
 Module.register('MMM-SingleStock', {
   defaults: {
     stockSymbol: 'GOOG',
+    apiToken: '',
     updateInterval: 3600000,
     showChange: true,
     label: 'symbol' // 'symbol' | 'companyName' | 'none'
@@ -61,7 +62,7 @@ Module.register('MMM-SingleStock', {
   _getData(onCompleteCallback) {
     const self = this;
 
-    const url = `https://api.iextrading.com/1.0/stock/${this.config.stockSymbol}/quote`;
+    const url = `https://cloud.iexapis.com/v1/stock/${this.config.stockSymbol}/quote?token=${this.config.apiToken}`;
 
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
