@@ -51,6 +51,7 @@ module.exports = function (grunt) {
             'MD018': false,
             'MD012': false,
             'MD026': false,
+            'MD034': false,
             'MD038': false
           }
         },
