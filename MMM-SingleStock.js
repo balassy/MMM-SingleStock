@@ -11,6 +11,7 @@ Module.register('MMM-SingleStock', {
     apiToken: '',
     updateInterval: 3600000,
     showChange: true,
+    changeType: '',
     label: 'symbol' // 'symbol' | 'companyName' | 'none'
   },
 
