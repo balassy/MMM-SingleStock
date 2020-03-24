@@ -51,6 +51,7 @@ var config = {
         apiToken: 'YOUR_TOKEN',  // Unique, private API key obtained from https://iexcloud.io/console/tokens
         updateInterval: 3600000, // 1 hour in milliseconds
         showChange: true,        // false | true
+        changeType: 'value',     // value | percent
         label: 'symbol'          // 'symbol' | 'companyName' | 'none' | any string
       }
     }
