@@ -71,7 +71,7 @@ var config = {
 | `apiToken`       | **REQUIRED** Your unique, private API key for the IEX Cloud you can obtain from https://iexcloud.io/console/tokens. <br><br> **Type:** `string` <br>**Default value:** `""` (empty string)
 | `updateInterval` | *Optional* The frequency of when the module should query the current price of the stock. <br><br>**Type:** `int` (milliseconds) <br>**Default value:** `3600000` milliseconds (1 hour)
 | `showChange`     | *Optional* Determines whether the price difference should be also displayed. <br><br>**Type:** `boolean` <br>**Default value:** `true` (yes, the price difference is displayed)
-|`changeType`      | *Optional* Allows stock change to be shown as the raw value or as a percent<br><br>**Type:** `string` <br>**Default Value**: `""`(empty string)<br>**Possible values:** <br>`percent`: Show the change as a percent rather than the raw value.
+|`changeType`      | *Optional* Allows stock change to be shown as the raw value or as a percent.<br><br>**Type:** `string` <br>**Default Value**: `""` (empty string)<br>**Possible values:** <br>`percent`: Show the change as a percent rather than the raw value.
 | `label`          | *Optional* Determines what prefix should be prepended to the price. <br><br>**Type:** `string` <br>**Possible values:** <br>`symbol`: The acronym of the stock (e.g. `GOOG`) is displayed before the price.<br>`companyName`: The full name of the company (e.g. `Alphabet Inc.`) is displayed before the price.<br>`none`: Nothing is displayed before the price, only the price is shown.<br>Any other string is displayed as is, e.g. set `$` to display a dollar sign before the price number.<br>**Default value:** `symbol` (the acronym of the stock is displayed before the price)
 
 ## How it works
