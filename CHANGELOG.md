@@ -3,6 +3,10 @@
 All notable changes to this project is documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.0]
+
+- Allow stock change to be shown as percent - thanks to [Reese Wells](https://github.com/ducoterra).
+
 ## [2.0.1]
 
 This is a maintenance release that updates all third party developer dependencies to the latest version and fix security vulnerability [CVE-2019-10744 ](https://github.com/lodash/lodash/pull/4336) in the third-party developer dependency `lodash` module.
