@@ -11,6 +11,7 @@ Module.register('MMM-SingleStock', {
     apiToken: '',
     updateInterval: 3600000,
     showChange: true,
+    changeType: '',
     label: 'symbol' // 'symbol' | 'companyName' | 'none'
   },
 
@@ -46,7 +47,11 @@ Module.register('MMM-SingleStock', {
       if (this.config.showChange) {
         const changeEl = document.createElement('div');
         changeEl.classList = 'dimmed small';
-        changeEl.innerHTML = ` (${this.viewModel.change})`;
+        if (this.config.changeType === 'percent') {
+          changeEl.innerHTML = ` (${this.viewModel.change}%)`;
+        } else {
+          changeEl.innerHTML = ` (${this.viewModel.change})`;
+        }
         wrapper.appendChild(changeEl);
       }
     } else {
@@ -84,9 +89,18 @@ Module.register('MMM-SingleStock', {
     const response = JSON.parse(responseBody);
 
     this.viewModel = {
-      price: response.latestPrice,
-      change: response.change > 0 ? `+${response.change}` : `${response.change}`
+      price: response.latestPrice
     };
+
+    // allow value or percent
+    switch (this.config.changeType) {
+      case 'percent':
+        this.viewModel.change = response.changePercent * 100;
+        break;
+      default:
+        this.viewModel.change = response.change > 0 ? `+${response.change}` : `${response.change}`;
+        break;
+    }
 
     switch (this.config.label) {
       case 'symbol':
