@@ -28,6 +28,10 @@ You can also configure the module to display a percent change in the price:
 
 ![Percent Change](doc/screenshot-percentchange.png)
 
+Finally, this module also supports a smaller view as well as colorizing the percentage change and highlight the stock value:
+
+![Minimal](doc/screenshot-minimizedcolorized.png)
+
 This module is capable to display only a single stock price. If you would like to see the price of more stocks on your mirror, add this module multiple times.
 
 For updates, please check the [CHANGELOG](https://github.com/balassy/MMM-SingleStock/blob/master/CHANGELOG.md).
@@ -56,6 +60,8 @@ var config = {
         updateInterval: 3600000, // 1 hour in milliseconds
         showChange: true,        // false | true
         changeType: '',          // 'percent' | ''
+				colorized: false,        // false | true to show percent in green/red as well as highlight stock symbol
+				minimal: true,           // false | true to reduce the font size for a more compact display
         label: 'symbol'          // 'symbol' | 'companyName' | 'none' | any string
       }
     }

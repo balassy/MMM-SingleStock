@@ -3,6 +3,12 @@
 All notable changes to this project is documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.1]
+
+- Trim decimal in percent view to 2 digits
+- Added support for a reduced size view
+- Added support for colorizing 
+
 ## [2.1.0]
 
 - Allow stock change to be shown as percent - thanks to [Reese Wells](https://github.com/ducoterra).

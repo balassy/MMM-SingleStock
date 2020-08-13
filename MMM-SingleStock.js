@@ -12,6 +12,8 @@ Module.register('MMM-SingleStock', {
     updateInterval: 3600000,
     showChange: true,
     changeType: '',
+    colorized: false,
+    minimal: false,
     label: 'symbol' // 'symbol' | 'companyName' | 'none'
   },
 
@@ -40,18 +42,56 @@ Module.register('MMM-SingleStock', {
     const wrapper = document.createElement('div');
 
     if (this.viewModel) {
-      const priceEl = document.createElement('div');
-      priceEl.innerHTML = `${this.viewModel.label} ${this.viewModel.price}`;
-      wrapper.appendChild(priceEl);
+      if (this.config.colorized) {
+        const priceEl = document.createElement('span');
+        if (this.config.minimal) {
+          priceEl.classList = 'normal small';
+        } else {
+          priceEs.classList = 'normal medium';
+        }
+        priceEl.innerHTML = `${this.viewModel.label}`;
+        wrapper.appendChild(priceEl);
+        const priceEs = document.createElement('span');
+        if (this.config.minimal) {
+          priceEs.classList = 'bright small';
+        } else {
+          priceEs.classList = 'bright medium';
+        }
+        priceEs.innerHTML = ` ${this.viewModel.price}`;
+        wrapper.appendChild(priceEs);
+      } else {
+        const priceEl = document.createElement('div');
+        priceEl.innerHTML = `${this.viewModel.label} ${this.viewModel.price}`;
+        if (this.config.minimal) {
+          priceEl.classList = 'dimmed small';
+        }
+        wrapper.appendChild(priceEl);
+    }
 
       if (this.config.showChange) {
         const changeEl = document.createElement('div');
-        changeEl.classList = 'dimmed small';
+        if (this.config.minimal) {
+          changeEl.classList = 'dimmed xsmall';
+        } else {
+          changeEl.classList = 'dimmed small';
+        }
         if (this.config.changeType === 'percent') {
           changeEl.innerHTML = ` (${this.viewModel.change}%)`;
         } else {
           changeEl.innerHTML = ` (${this.viewModel.change})`;
         }
+        if (this.config.colorized)
+        {
+          if (this.viewModel.change > 0)
+          {
+              changeEl.style = 'color: #a3ea80';
+          }
+          if (this.viewModel.change < 0)
+          {
+              changeEl.style = 'color: #FF8E99';
+          }
+        }
+
         wrapper.appendChild(changeEl);
       }
     } else {
@@ -95,7 +135,7 @@ Module.register('MMM-SingleStock', {
     // allow value or percent
     switch (this.config.changeType) {
       case 'percent':
-        this.viewModel.change = response.changePercent * 100;
+        this.viewModel.change = (response.changePercent * 100).toFixed(2);
         break;
       default:
         this.viewModel.change = response.change > 0 ? `+${response.change}` : `${response.change}`;
