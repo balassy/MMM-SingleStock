@@ -60,8 +60,8 @@ var config = {
         updateInterval: 3600000, // 1 hour in milliseconds
         showChange: true,        // false | true
         changeType: '',          // 'percent' | ''
-				colorized: false,        // false | true to show percent in green/red as well as highlight stock symbol
-				minimal: true,           // false | true to reduce the font size for a more compact display
+        colorized: false,        // false | true to show percent in green/red as well as highlight stock symbol
+        minimal: true,           // false | true to reduce the font size for a more compact display
         label: 'symbol'          // 'symbol' | 'companyName' | 'none' | any string
       }
     }
