@@ -42,53 +42,44 @@ Module.register('MMM-SingleStock', {
     const wrapper = document.createElement('div');
 
     if (this.viewModel) {
+      const priceEl = document.createElement('div');
+      if (this.config.minimal) {
+        priceEl.classList = 'small';
+      }
+
+      const labelEl = document.createElement('span');
+      labelEl.innerHTML = `${this.viewModel.label}`;
+      priceEl.appendChild(labelEl);
+
+      const valueEl = document.createElement('span');
+      valueEl.innerHTML = ` ${this.viewModel.price}`;
       if (this.config.colorized) {
-        const priceEl = document.createElement('span');
-        if (this.config.minimal) {
-          priceEl.classList = 'normal small';
-        } else {
-          priceEs.classList = 'normal medium';
-        }
-        priceEl.innerHTML = `${this.viewModel.label}`;
-        wrapper.appendChild(priceEl);
-        const priceEs = document.createElement('span');
-        if (this.config.minimal) {
-          priceEs.classList = 'bright small';
-        } else {
-          priceEs.classList = 'bright medium';
-        }
-        priceEs.innerHTML = ` ${this.viewModel.price}`;
-        wrapper.appendChild(priceEs);
-      } else {
-        const priceEl = document.createElement('div');
-        priceEl.innerHTML = `${this.viewModel.label} ${this.viewModel.price}`;
-        if (this.config.minimal) {
-          priceEl.classList = 'dimmed small';
-        }
-        wrapper.appendChild(priceEl);
-    }
+        valueEl.classList = 'bright';
+      }
+      priceEl.appendChild(valueEl);
+
+      wrapper.appendChild(priceEl);
 
       if (this.config.showChange) {
         const changeEl = document.createElement('div');
-        if (this.config.minimal) {
-          changeEl.classList = 'dimmed xsmall';
-        } else {
-          changeEl.classList = 'dimmed small';
-        }
-        if (this.config.changeType === 'percent') {
-          changeEl.innerHTML = ` (${this.viewModel.change}%)`;
-        } else {
-          changeEl.innerHTML = ` (${this.viewModel.change})`;
-        }
+
+        changeEl.innerHTML = this.config.changeType === 'percent'
+          ? `(${this.viewModel.change}%)`
+          : `(${this.viewModel.change})`;
+
+        changeEl.classList = this.config.minimal
+          ? 'dimmed xsmall'
+          : 'dimmed small';
+
         if (this.config.colorized)
         {
           if (this.viewModel.change > 0)
           {
-              changeEl.style = 'color: #a3ea80';
+            changeEl.style = 'color: #a3ea80';
           }
           if (this.viewModel.change < 0)
           {
-              changeEl.style = 'color: #FF8E99';
+            changeEl.style = 'color: #FF8E99';
           }
         }
 
@@ -132,7 +123,6 @@ Module.register('MMM-SingleStock', {
       price: response.latestPrice
     };
 
-    // allow value or percent
     switch (this.config.changeType) {
       case 'percent':
         this.viewModel.change = (response.changePercent * 100).toFixed(2);

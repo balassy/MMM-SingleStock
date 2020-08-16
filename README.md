@@ -60,9 +60,9 @@ var config = {
         updateInterval: 3600000, // 1 hour in milliseconds
         showChange: true,        // false | true
         changeType: '',          // 'percent' | ''
-        colorized: false,        // false | true to show percent in green/red as well as highlight stock symbol
-        minimal: true,           // false | true to reduce the font size for a more compact display
-        label: 'symbol'          // 'symbol' | 'companyName' | 'none' | any string
+        label: 'symbol',         // 'symbol' | 'companyName' | 'none' | any string
+        colorized: false,        // false | true
+        minimal: false           // false | true
       }
     }
   ]
@@ -79,6 +79,8 @@ var config = {
 | `showChange`     | *Optional* Determines whether the price difference should be also displayed. <br><br>**Type:** `boolean` <br>**Default value:** `true` (yes, the price difference is displayed)
 |`changeType`      | *Optional* Allows stock change to be shown as the raw value or as a percent.<br><br>**Type:** `string` <br>**Default Value**: `""` (empty string)<br>**Possible values:** <br>`percent`: Show the change as a percent rather than the raw value.
 | `label`          | *Optional* Determines what prefix should be prepended to the price. <br><br>**Type:** `string` <br>**Possible values:** <br>`symbol`: The acronym of the stock (e.g. `GOOG`) is displayed before the price.<br>`companyName`: The full name of the company (e.g. `Alphabet Inc.`) is displayed before the price.<br>`none`: Nothing is displayed before the price, only the price is shown.<br>Any other string is displayed as is, e.g. set `$` to display a dollar sign before the price number.<br>**Default value:** `symbol` (the acronym of the stock is displayed before the price)
+| `colorized`      | *Optional* Determines whether the price difference should be displayed in red (negative) or green (positive) as well as highlight the current price. <br><br>**Type:** `boolean` <br>**Default value:** `false` (no color highlight)
+| `minimal`        | *Optional* Determines whether the module should reduce the font size for a more compact display. <br><br>**Type:** `boolean` <br>**Default value:** `false` (regular font size)
 
 ## How it works
 
