@@ -12,6 +12,8 @@ Module.register('MMM-SingleStock', {
     updateInterval: 3600000,
     showChange: true,
     changeType: '',
+    colorized: false,
+    minimal: false,
     label: 'symbol' // 'symbol' | 'companyName' | 'none'
   },
 
@@ -41,17 +43,46 @@ Module.register('MMM-SingleStock', {
 
     if (this.viewModel) {
       const priceEl = document.createElement('div');
-      priceEl.innerHTML = `${this.viewModel.label} ${this.viewModel.price}`;
+      if (this.config.minimal) {
+        priceEl.classList = 'small';
+      }
+
+      const labelEl = document.createElement('span');
+      labelEl.innerHTML = `${this.viewModel.label}`;
+      priceEl.appendChild(labelEl);
+
+      const valueEl = document.createElement('span');
+      valueEl.innerHTML = ` ${this.viewModel.price}`;
+      if (this.config.colorized) {
+        valueEl.classList = 'bright';
+      }
+      priceEl.appendChild(valueEl);
+
       wrapper.appendChild(priceEl);
 
       if (this.config.showChange) {
         const changeEl = document.createElement('div');
-        changeEl.classList = 'dimmed small';
-        if (this.config.changeType === 'percent') {
-          changeEl.innerHTML = ` (${this.viewModel.change}%)`;
-        } else {
-          changeEl.innerHTML = ` (${this.viewModel.change})`;
+
+        changeEl.innerHTML = this.config.changeType === 'percent'
+          ? `(${this.viewModel.change}%)`
+          : `(${this.viewModel.change})`;
+
+        changeEl.classList = this.config.minimal
+          ? 'dimmed xsmall'
+          : 'dimmed small';
+
+        if (this.config.colorized)
+        {
+          if (this.viewModel.change > 0)
+          {
+            changeEl.style = 'color: #a3ea80';
+          }
+          if (this.viewModel.change < 0)
+          {
+            changeEl.style = 'color: #FF8E99';
+          }
         }
+
         wrapper.appendChild(changeEl);
       }
     } else {
@@ -92,10 +123,9 @@ Module.register('MMM-SingleStock', {
       price: response.latestPrice
     };
 
-    // allow value or percent
     switch (this.config.changeType) {
       case 'percent':
-        this.viewModel.change = response.changePercent * 100;
+        this.viewModel.change = (response.changePercent * 100).toFixed(2);
         break;
       default:
         this.viewModel.change = response.change > 0 ? `+${response.change}` : `${response.change}`;
