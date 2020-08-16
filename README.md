@@ -102,16 +102,10 @@ Although for operation this module does not depend on any other module, if you w
 npm install
 ```
 
-2. Install Grunt:
+2. Run all linters:
 
 ```bash
-npm install -g grunt
-```
-
-3. Use Grunt to run all linters:
-
-```bash
-grunt
+npm run lint
 ```
 
 ## Got feedback?
