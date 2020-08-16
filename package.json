@@ -1,6 +1,6 @@
 {
   "name": "MMM-SingleStock",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "MagicMirror module that displays the stock price of a single company.",
   "main": "MMM-SingleStock.js",
   "author": "György Balássy",
