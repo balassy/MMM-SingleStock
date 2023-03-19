@@ -62,7 +62,8 @@ var config = {
         changeType: '',          // 'percent' | ''
         label: 'symbol',         // 'symbol' | 'companyName' | 'none' | any string
         colorized: false,        // false | true
-        minimal: false           // false | true
+        minimal: false,          // false | true
+        api: 'iexcloud'          // 'iexcloud' | 'tiingo'
       }
     }
   ]
@@ -75,18 +76,28 @@ var config = {
 |----------------- |-----------
 | `stockSymbol`    | **REQUIRED** The symbol of the stock of what the value should be displayed in this module. <br><br> **Type:** `string` <br>**Default value:** `GOOG`
 | `apiToken`       | **REQUIRED** Your unique, private API key for the IEX Cloud you can obtain from https://iexcloud.io/console/tokens. <br><br> **Type:** `string` <br>**Default value:** `""` (empty string)
+| `api`            | **REQUIRED** Sets the API to use for requesting data. <br><br>**Type:** `string` <br>**Default value:** `'iexcloud'` <br>**Possible values:** <br>`iexcloud`: Uses the IEX Cloud API <br>`tiingo`: Uses the Tiingo API.
 | `updateInterval` | *Optional* The frequency of when the module should query the current price of the stock. <br><br>**Type:** `int` (milliseconds) <br>**Default value:** `3600000` milliseconds (1 hour)
 | `showChange`     | *Optional* Determines whether the price difference should be also displayed. <br><br>**Type:** `boolean` <br>**Default value:** `true` (yes, the price difference is displayed)
 |`changeType`      | *Optional* Allows stock change to be shown as the raw value or as a percent.<br><br>**Type:** `string` <br>**Default Value**: `""` (empty string)<br>**Possible values:** <br>`percent`: Show the change as a percent rather than the raw value.
 | `label`          | *Optional* Determines what prefix should be prepended to the price. <br><br>**Type:** `string` <br>**Possible values:** <br>`symbol`: The acronym of the stock (e.g. `GOOG`) is displayed before the price.<br>`companyName`: The full name of the company (e.g. `Alphabet Inc.`) is displayed before the price.<br>`none`: Nothing is displayed before the price, only the price is shown.<br>Any other string is displayed as is, e.g. set `$` to display a dollar sign before the price number.<br>**Default value:** `symbol` (the acronym of the stock is displayed before the price)
 | `colorized`      | *Optional* Determines whether the price difference should be displayed in red (negative) or green (positive) as well as highlight the current price. <br><br>**Type:** `boolean` <br>**Default value:** `false` (no color highlight)
 | `minimal`        | *Optional* Determines whether the module should reduce the font size for a more compact display. <br><br>**Type:** `boolean` <br>**Default value:** `false` (regular font size)
+| `apiToken` | **REQUIRED** Your unique, private API key for the IEX Cloud you can obtain from https://iexcloud.io/console/tokens. <br><br> **Type:** `string` <br>**Default value:** `""` (empty string)ß
 
 ## How it works
 
-This module periodically sends requests from the browser window of the MagicMirror Electron application to the [IEX Cloud Service](https://iextrading.com/developer/). The IEX Cloud API has [multiple tiers](https://iexcloud.io/pricing/) including a free tier which is suitable for this module. However to access the API you need a unique, private API Token.
+This module periodically sends requests from the browser window of the MagicMirror Electron application to the defined API.
+
+### [IEX Cloud Service](https://iextrading.com/developer/)
+
+The IEX Cloud API has [multiple tiers](https://iexcloud.io/pricing/) including a free tier which is suitable for this module. However to access the API you need a unique, private API Token.
 
 You can sign up to IEX Cloud by visiting this URL: https://iexcloud.io/cloud-login#/register/
+
+### [Tiingo](https://api.tiingo.com/documentation/general/overview)
+
+Tiingo has a [free tier](https://api.tiingo.com/account/billing/pricing) that allows for up to 50 requests per hour.  You will need a unique token to access the API and that will require you to create an account.
 
 ## Localization
 
