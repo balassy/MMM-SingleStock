@@ -6,23 +6,23 @@ This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror
 
 By default this module displays the symbol and the current price of the configured stock:
 
-![Default](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-default.png)
+![Default](doc/screenshot-default.png)
 
 You can configure the module to display the full name of the company instead of the stock symbol:
 
-![With full company name](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-companyname.png)
+![With full company name](doc/screenshot-companyname.png)
 
 If you wish, you can completely remove the prefix, and display only the price value:
 
-![Without prefix](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-none.png)
+![Without prefix](doc/screenshot-none.png)
 
 You can even configure any custom prefix, for example a dollar sign:
 
-![With custom prefix](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-customprefix.png)
+![With custom prefix](doc/screenshot-customprefix.png)
 
 The second line of the module displays the change of the price which can be hidden if you prefer:
 
-![Without second line](https://raw.githubusercontent.com/balassy/MMM-SingleStock/master/doc/screenshot-nochange.png)
+![Without second line](doc/screenshot-nochange.png)
 
 You can also configure the module to display a percent change in the price:
 
@@ -34,8 +34,6 @@ Finally, this module also supports a smaller view as well as colorizing the perc
 
 This module is capable to display only a single stock price. If you would like to see the price of more stocks on your mirror, add this module multiple times.
 
-For updates, please check the [CHANGELOG](https://github.com/balassy/MMM-SingleStock/blob/master/CHANGELOG.md).
-
 ## Using the module
 
 To use this module follow these steps:
@@ -43,7 +41,7 @@ To use this module follow these steps:
 1. Clone this repository to the `modules` folder of your MagicMirror:
 
 ```bash
-git clone https://github.com/balassy/MMM-SingleStock.git
+git clone https://github.com/tdadah/MMM-SingleStock.git
 ```
 
 2. Add the following configuration block to the modules array in the `config/config.js` file:
@@ -62,7 +60,8 @@ var config = {
         changeType: '',          // 'percent' | ''
         label: 'symbol',         // 'symbol' | 'companyName' | 'none' | any string
         colorized: false,        // false | true
-        minimal: false           // false | true
+        minimal: false,          // false | true
+        api: 'iexcloud'          // 'iexcloud' | 'tiingo'
       }
     }
   ]
@@ -74,7 +73,8 @@ var config = {
 | Option           | Description
 |----------------- |-----------
 | `stockSymbol`    | **REQUIRED** The symbol of the stock of what the value should be displayed in this module. <br><br> **Type:** `string` <br>**Default value:** `GOOG`
-| `apiToken`       | **REQUIRED** Your unique, private API key for the IEX Cloud you can obtain from https://iexcloud.io/console/tokens. <br><br> **Type:** `string` <br>**Default value:** `""` (empty string)
+| `apiToken`       | **REQUIRED** Your unique, private API key for the IEX Cloud you can obtain from https://iexcloud.io/console/tokens or the Tiingo token from https://api.tiingo.com/documentation/general/connecting. <br><br> **Type:** `string` <br>**Default value:** `""` (empty string)
+| `api`            | **REQUIRED** Sets the API to use for requesting data. <br><br>**Type:** `string` <br>**Default value:** `'iexcloud'` <br>**Possible values:** <br>`iexcloud`: Uses the IEX Cloud API <br>`tiingo`: Uses the Tiingo API.
 | `updateInterval` | *Optional* The frequency of when the module should query the current price of the stock. <br><br>**Type:** `int` (milliseconds) <br>**Default value:** `3600000` milliseconds (1 hour)
 | `showChange`     | *Optional* Determines whether the price difference should be also displayed. <br><br>**Type:** `boolean` <br>**Default value:** `true` (yes, the price difference is displayed)
 |`changeType`      | *Optional* Allows stock change to be shown as the raw value or as a percent.<br><br>**Type:** `string` <br>**Default Value**: `""` (empty string)<br>**Possible values:** <br>`percent`: Show the change as a percent rather than the raw value.
@@ -84,9 +84,17 @@ var config = {
 
 ## How it works
 
-This module periodically sends requests from the browser window of the MagicMirror Electron application to the [IEX Cloud Service](https://iextrading.com/developer/). The IEX Cloud API has [multiple tiers](https://iexcloud.io/pricing/) including a free tier which is suitable for this module. However to access the API you need a unique, private API Token.
+This module periodically sends requests from the browser window of the MagicMirror Electron application to the defined API.
+
+### [IEX Cloud Service](https://iextrading.com/developer/)
+
+The IEX Cloud API has [multiple tiers](https://iexcloud.io/pricing/) including a free tier which is suitable for this module. However to access the API you need a unique, private API Token.
 
 You can sign up to IEX Cloud by visiting this URL: https://iexcloud.io/cloud-login#/register/
+
+### [Tiingo](https://api.tiingo.com/documentation/general/overview)
+
+Tiingo has a [free tier](https://api.tiingo.com/account/billing/pricing) that allows for up to 50 requests per hour.  You will need a unique token to access the API and that will require you to create an account.
 
 ## Localization
 
@@ -125,4 +133,6 @@ Thanks to [Rodrigo Ramírez Norambuena](https://github.com/roramirez) for creati
 
 ## About the author
 
-This project is created and maintaned by [György Balássy](https://www.linkedin.com/in/balassy).
+This project was created by [György Balássy](https://www.linkedin.com/in/balassy).
+
+This fork was created and maintained by [Tara Dadah](https://www.linkedin.com/in/taradadah/).

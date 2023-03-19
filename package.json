@@ -1,9 +1,9 @@
 {
   "name": "MMM-SingleStock",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "MagicMirror module that displays the stock price of a single company.",
   "main": "MMM-SingleStock.js",
-  "author": "György Balássy",
+  "author": "Tara Dadah",
   "license": "MIT",
   "scripts": {
     "lint": "npm run jsonlint & npm run eslint & npm run markdownlint",
