@@ -42,7 +42,11 @@ Module.register('MMM-SingleStock', {
     }
 
     setInterval(() => {
-      self._getData(() => self.updateDom());
+      if (this.config.crypto !== '') {
+        self._getCrypto(() => self.updateDom());
+      } else {
+        self._getData(() => self.updateDom());
+      }
     }, this.config.updateInterval);
   },
 
@@ -92,7 +96,7 @@ Module.register('MMM-SingleStock', {
       }
     } else {
       const loadingEl = document.createElement('span');
-      loadingEl.innerHTML = this.translate('LOADING', { symbol: this.config.stockSymbol });
+      loadingEl.innerHTML = this.translate('LOADING', { symbol: this.config.crypto ?? this.config.stockSymbol });
       loadingEl.classList = 'dimmed small';
       wrapper.appendChild(loadingEl);
     }
