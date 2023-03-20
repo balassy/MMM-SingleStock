@@ -210,7 +210,7 @@ Module.register('MMM-SingleStock', {
 
     switch (this.config.label) {
       case 'symbol':
-        this.viewModel.label = response.baseCurrency;
+        this.viewModel.label = response.baseCurrency.toUpperCase();
         break;
       case 'none':
         this.viewModel.label = '';
