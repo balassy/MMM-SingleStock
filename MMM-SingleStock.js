@@ -15,11 +15,13 @@ Module.register('MMM-SingleStock', {
     colorized: false,
     minimal: false,
     label: 'symbol', // 'symbol' | 'companyName' | 'none'
-    api: 'iexcloud' // 'iexcloud' | 'tiingo'
+    api: 'iexcloud', // 'iexcloud' | 'tiingo'
+    crypto: ''
   },
 
   requiresVersion: '2.1.0',
   url: '',
+  cryptoUrl: '',
 
   getTranslations() {
     return {
@@ -33,7 +35,11 @@ Module.register('MMM-SingleStock', {
     this.viewModel = null;
     this.hasData = false;
 
-    this._getData(() => self.updateDom());
+    if (this.config.crypto !== '') {
+      this._getCrypto(() => self.updateDom());
+    } else {
+      this._getData(() => self.updateDom());
+    }
 
     setInterval(() => {
       self._getData(() => self.updateDom());
@@ -94,6 +100,29 @@ Module.register('MMM-SingleStock', {
     return wrapper;
   },
 
+  _getCrypto(onCompleteCallback) {
+    const self = this;
+
+    if (this.cryptoUrl === '') {
+      this.cryptoUrl = this._getTiingoUrl(`https://api.tiingo.com/tiingo/crypto/prices?tickers=${this.config.crypto}&resampleFreq=5min`);
+    }
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', this.cryptoUrl, true);
+    xhr.onreadystatechange = function onReadyStateChange() {
+      if (this.readyState === 4) {
+        if (this.status === 200) {
+          self._processCryptoResponse(this.response);
+          onCompleteCallback();
+        } else {
+          Log.error(self.name, `MMM-SingleStock: Failed to load crypto data. XHR status: ${this.status}`);
+        }
+      }
+    };
+
+    xhr.send();
+  },
+
   _getData(onCompleteCallback) {
     const self = this;
 
@@ -118,8 +147,6 @@ Module.register('MMM-SingleStock', {
   _processResponse(responseBody) {
     const response = this._setResponse(responseBody);
 
-    Log.info(response);
-
     this.viewModel = {
       price: this._setPrice(response)
     };
@@ -139,6 +166,51 @@ Module.register('MMM-SingleStock', {
         break;
       case 'companyName':
         this.viewModel.label = response.ticker;
+        break;
+      case 'none':
+        this.viewModel.label = '';
+        break;
+      default:
+        this.viewModel.label = this.config.label;
+        break;
+    }
+
+    if (!this.hasData) {
+      this.updateDom();
+    }
+
+    this.hasData = true;
+  },
+
+  _processCryptoResponse(responseBody) {
+    const parsed = JSON.parse(responseBody);
+    // eslint-disable-next-line prefer-destructuring
+    const response = parsed[0];
+    // eslint-disable-next-line prefer-destructuring
+    const openingPriceData = response.priceData[0];
+    const priceData = response.priceData[response.priceData.length - 1];
+
+    Log.info(priceData);
+
+    this.viewModel = {
+      price: priceData.close.toFixed(2)
+    };
+
+    switch (this.config.changeType) {
+      case 'percent':
+        this.viewModel.change = (
+          ((openingPriceData.open - priceData.close) / openingPriceData.open)
+          * 100
+        ).toFixed(2);
+        break;
+      default:
+        this.viewModel.change = (openingPriceData.open - priceData.close).toFixed(2);
+        break;
+    }
+
+    switch (this.config.label) {
+      case 'symbol':
+        this.viewModel.label = response.baseCurrency;
         break;
       case 'none':
         this.viewModel.label = '';
@@ -233,7 +305,7 @@ Module.register('MMM-SingleStock', {
         break;
       case 'tiingo':
         if (this.url === '') {
-          this.url = this._getTiingoUrl();
+          this.url = this._getTiingoUrl(`https://api.tiingo.com/iex/?tickers=${this.config.stockSymbol}`);
         }
         break;
       default:
@@ -242,7 +314,7 @@ Module.register('MMM-SingleStock', {
     }
   },
 
-  _getTiingoUrl() {
+  _getTiingoUrl(baseUrl) {
     const expectedResponseHeaders = [
       'server',
       'date',
@@ -257,7 +329,7 @@ Module.register('MMM-SingleStock', {
     ];
 
     const url = this._getCorsUrl(
-      `https://api.tiingo.com/iex/?tickers=${this.config.stockSymbol}`,
+      baseUrl,
       requestHeaders,
       expectedResponseHeaders
     );
