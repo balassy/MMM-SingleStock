@@ -274,7 +274,7 @@ Module.register('MMM-SingleStock', {
         value = response.change > 0 ? `+${response.change}` : `${response.change}`;
         break;
       case 'tiingo':
-        value = (response.prevClose - response.last).toFixed(2);
+        value = (response.last - response.prevClose).toFixed(2);
         break;
       default:
         break;
@@ -291,7 +291,7 @@ Module.register('MMM-SingleStock', {
         break;
       case 'tiingo':
         value = (
-          ((response.prevClose - response.last) / response.prevClose)
+          ((response.last - response.prevClose) / response.prevClose)
           * 100
         ).toFixed(2);
         break;
