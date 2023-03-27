@@ -203,12 +203,12 @@ Module.register('MMM-SingleStock', {
     switch (this.config.changeType) {
       case 'percent':
         this.viewModel.change = (
-          ((openingPriceData.open - priceData.close) / openingPriceData.open)
+          ((priceData.close - openingPriceData.open) / openingPriceData.open)
           * 100
         ).toFixed(2);
         break;
       default:
-        this.viewModel.change = (openingPriceData.open - priceData.close).toFixed(2);
+        this.viewModel.change = (priceData.close - openingPriceData.open).toFixed(2);
         break;
     }
 
