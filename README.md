@@ -83,7 +83,6 @@ var config = {
 | `label`          | *Optional* Determines what prefix should be prepended to the price. <br><br>**Type:** `string` <br>**Possible values:** <br>`symbol`: The acronym of the stock (e.g. `GOOG`) is displayed before the price.<br>`companyName`: The full name of the company (e.g. `Alphabet Inc.`) is displayed before the price.<br>`none`: Nothing is displayed before the price, only the price is shown.<br>Any other string is displayed as is, e.g. set `$` to display a dollar sign before the price number.<br>**Default value:** `symbol` (the acronym of the stock is displayed before the price)
 | `colorized`      | *Optional* Determines whether the price difference should be displayed in red (negative) or green (positive) as well as highlight the current price. <br><br>**Type:** `boolean` <br>**Default value:** `false` (no color highlight)
 | `minimal`        | *Optional* Determines whether the module should reduce the font size for a more compact display. <br><br>**Type:** `boolean` <br>**Default value:** `false` (regular font size)
-| `apiToken` | **REQUIRED** Your unique, private API key for the IEX Cloud you can obtain from https://iexcloud.io/console/tokens. <br><br> **Type:** `string` <br>**Default value:** `""` (empty string)ß
 
 ## How it works
 
