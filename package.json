@@ -1,6 +1,6 @@
 {
   "name": "MMM-SingleStock",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "MagicMirror module that displays the stock price of a single company.",
   "main": "MMM-SingleStock.js",
   "author": "György Balássy",
@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "npm run jsonlint & npm run eslint & npm run markdownlint",
     "eslint": "eslint *.js",
-    "jsonlint": "jsonlint --quiet --comments .",
+    "jsonlint": "jsonlint --quiet --comments **/*.json !**/node_modules",
     "markdownlint": "markdownlint *.md"
   },
   "repository": {
@@ -21,10 +21,10 @@
     "stock"
   ],
   "devDependencies": {
-    "@prantlf/jsonlint": "^10.2.0",
-    "eslint": "^7.7.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "markdownlint-cli": "^0.23.2"
+    "@prantlf/jsonlint": "^14.0.3",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "markdownlint-cli": "^0.39.0"
   }
 }

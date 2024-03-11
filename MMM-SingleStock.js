@@ -71,14 +71,11 @@ Module.register('MMM-SingleStock', {
           ? 'dimmed xsmall'
           : 'dimmed small';
 
-        if (this.config.colorized)
-        {
-          if (this.viewModel.change > 0)
-          {
+        if (this.config.colorized) {
+          if (this.viewModel.change > 0) {
             changeEl.style = 'color: #a3ea80';
           }
-          if (this.viewModel.change < 0)
-          {
+          if (this.viewModel.change < 0) {
             changeEl.style = 'color: #FF8E99';
           }
         }
