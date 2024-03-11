@@ -95,7 +95,7 @@ Module.register('MMM-SingleStock', {
   _getData(onCompleteCallback) {
     const self = this;
 
-    const url = `https://cloud.iexapis.com/v1/stock/${this.config.stockSymbol}/quote?token=${this.config.apiToken}`;
+    const url = `https://finnhub.io/api/v1/quote?symbol=${this.config.stockSymbol}&token=${this.config.apiToken}`;
 
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -117,24 +117,21 @@ Module.register('MMM-SingleStock', {
     const response = JSON.parse(responseBody);
 
     this.viewModel = {
-      price: response.latestPrice
+      price: response.c
     };
 
     switch (this.config.changeType) {
       case 'percent':
-        this.viewModel.change = (response.changePercent * 100).toFixed(2);
+        this.viewModel.change = (response.dp).toFixed(2);
         break;
       default:
-        this.viewModel.change = response.change > 0 ? `+${response.change}` : `${response.change}`;
+        this.viewModel.change = response.d > 0 ? `+${response.d}` : `${response.d}`;
         break;
     }
 
     switch (this.config.label) {
       case 'symbol':
-        this.viewModel.label = response.symbol;
-        break;
-      case 'companyName':
-        this.viewModel.label = response.companyName;
+        this.viewModel.label = this.config.stockSymbol;
         break;
       case 'none':
         this.viewModel.label = '';

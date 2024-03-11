@@ -2,6 +2,9 @@
 
 This is a module for the [MagicMirror²](https://github.com/MichMich/MagicMirror/) to display a single stock price without any fancy animation.
 
+## Update June 2023
+IEX Cloud no longer offers a free tier. This module has been updated to use [Finnhub.io](https://finnhub.io).
+
 ## Features
 
 By default this module displays the symbol and the current price of the configured stock:
@@ -56,11 +59,11 @@ var config = {
       position: 'top_right',
       config: {
         stockSymbol: 'GOOG',
-        apiToken: 'YOUR_TOKEN',  // Unique, private API key obtained from https://iexcloud.io/console/tokens
+        apiToken: 'YOUR_TOKEN',  // Unique, private API key obtained fromhttps://finnhub.io/dashboard
         updateInterval: 3600000, // 1 hour in milliseconds
         showChange: true,        // false | true
         changeType: '',          // 'percent' | ''
-        label: 'symbol',         // 'symbol' | 'companyName' | 'none' | any string
+        label: 'symbol',         // 'symbol' | '' | any string
         colorized: false,        // false | true
         minimal: false           // false | true
       }
@@ -74,19 +77,19 @@ var config = {
 | Option           | Description
 |----------------- |-----------
 | `stockSymbol`    | **REQUIRED** The symbol of the stock of what the value should be displayed in this module. <br><br> **Type:** `string` <br>**Default value:** `GOOG`
-| `apiToken`       | **REQUIRED** Your unique, private API key for the IEX Cloud you can obtain from https://iexcloud.io/console/tokens. <br><br> **Type:** `string` <br>**Default value:** `""` (empty string)
+| `apiToken`       | **REQUIRED** Your unique, private API key for Finnhub.io. You can obtain a free key from https://finnhub.io/dashboard. <br><br> **Type:** `string` <br>**Default value:** `""` (empty string)
 | `updateInterval` | *Optional* The frequency of when the module should query the current price of the stock. <br><br>**Type:** `int` (milliseconds) <br>**Default value:** `3600000` milliseconds (1 hour)
 | `showChange`     | *Optional* Determines whether the price difference should be also displayed. <br><br>**Type:** `boolean` <br>**Default value:** `true` (yes, the price difference is displayed)
 |`changeType`      | *Optional* Allows stock change to be shown as the raw value or as a percent.<br><br>**Type:** `string` <br>**Default Value**: `""` (empty string)<br>**Possible values:** <br>`percent`: Show the change as a percent rather than the raw value.
-| `label`          | *Optional* Determines what prefix should be prepended to the price. <br><br>**Type:** `string` <br>**Possible values:** <br>`symbol`: The acronym of the stock (e.g. `GOOG`) is displayed before the price.<br>`companyName`: The full name of the company (e.g. `Alphabet Inc.`) is displayed before the price.<br>`none`: Nothing is displayed before the price, only the price is shown.<br>Any other string is displayed as is, e.g. set `$` to display a dollar sign before the price number.<br>**Default value:** `symbol` (the acronym of the stock is displayed before the price)
+| `label`          | *Optional* Determines what prefix should be prepended to the price. <br><br>**Type:** `string` <br>**Possible values:** <br>`symbol`: The acronym of the stock (e.g. `MSFT`) is displayed before the price.<br>``: Nothing is displayed before the price, only the price is shown.<br>Any other string is displayed as is, e.g. set `$` to display a dollar sign before the price number.<br>**Default value:** `symbol` (the acronym of the stock is displayed before the price)
 | `colorized`      | *Optional* Determines whether the price difference should be displayed in red (negative) or green (positive) as well as highlight the current price. <br><br>**Type:** `boolean` <br>**Default value:** `false` (no color highlight)
 | `minimal`        | *Optional* Determines whether the module should reduce the font size for a more compact display. <br><br>**Type:** `boolean` <br>**Default value:** `false` (regular font size)
 
 ## How it works
 
-This module periodically sends requests from the browser window of the MagicMirror Electron application to the [IEX Cloud Service](https://iextrading.com/developer/). The IEX Cloud API has [multiple tiers](https://iexcloud.io/pricing/) including a free tier which is suitable for this module. However to access the API you need a unique, private API Token.
+This module periodically sends requests from the browser window of the MagicMirror Electron application to [Finnhub.io](https://finnhub.io/). The Finnhub.io API has [two plans](https://finnhub.io/pricing) including a free tier which is suitable for this module. However to access the API you need a unique, private API Token.
 
-You can sign up to IEX Cloud by visiting this URL: https://iexcloud.io/cloud-login#/register/
+You can sign up to Finnhub.io by visiting this URL: https://finnhub.io/dashboard
 
 ## Localization
 
